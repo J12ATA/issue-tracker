@@ -69,7 +69,7 @@ module.exports = app => {
     Project.findOne({ project }, (err, projectName) => {
       if (err) next(err);
       if (!projectName) return res.status(400).send(`Unknown Project: ${project}`);
-      const issueIndex = projectName.issues.findIndex(issueToUpdate => issueToUpdate._id === _id);
+      const issueIndex = projectName.issues.findIndex(issue => issue._id === _id);
       const issueToUpdate = projectName.issues[issueIndex];
       if (!issueToUpdate) return res.status(400).send('No update field sent');
       for (let field in req.body) {
